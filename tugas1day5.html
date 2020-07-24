@@ -1,0 +1,81 @@
+<html>
+    <script>
+        do {
+            var welcome = prompt('Selamat datang apakah Anda mau berbelanja "Ya/Tidak"').toLowerCase()
+            var stokJeruk = 15
+            var stokApel = 10
+            var stokAnggur = 7
+            do {
+                if (welcome == 'ya'){
+                    let jeruk
+                    do {
+                        jeruk=prompt('Berapa Jeruk yang Anda beli?');
+                        if (jeruk>stokJeruk){
+                        alert(`Stok Jeruk hanya ada ${stokJeruk}`)
+                        }
+                        else if (jeruk == 0){
+                            alert(`Tidak boleh kosong`)
+                        }
+                        else if (!(jeruk>0)){
+                            alert('Inputan salah')
+                        }
+                    } while (jeruk>stokJeruk || jeruk == 0 || !(jeruk>0));
+                    let apel
+                    do {
+                        apel=prompt('Berapa Apel yang Anda beli?');
+                        if (apel>stokApel){
+                            alert(`Stok Apel hanya ada ${stokApel}`)
+                        }
+                        else if (apel == 0){
+                            alert(`Tidak boleh kosong`)
+                        }
+                    } while (apel>stokApel || apel == 0);
+                    let anggur
+                    do {
+                        anggur=prompt('Berapa Anggur yang Anda beli?');
+                        if (anggur>stokAnggur){
+                            alert(`Stok Anggur hanya ada ${stokAnggur}`)
+                        }
+                        else if (anggur == 0){
+                            alert(`Tidak boleh kosong`)
+                        }
+                    } while (anggur>stokAnggur || anggur == 0);
+                    let hjeruk= 10000; hapel=15000; hanggur=20000
+                    let totalbelanja = +(jeruk*hjeruk) + +(apel*hapel) + +(anggur*hanggur)
+                        alert(`Jadi Anda belanja\n\nJeruk = ${jeruk}\nApel = ${apel}\nAnggur = ${anggur}\n\nTotal = ${totalbelanja}`);
+                    let bayar 
+                    do {
+                        bayar=prompt('Masukkan Jumlah uang Anda')
+                        if (bayar == totalbelanja){
+                            alert('Terima kasih atas pembayarannya')
+                        }
+                        else if (bayar < totalbelanja ){
+                            alert(`Pembayaran Anda kurang ${totalbelanja-bayar}`)
+                        }
+                        else {
+                            alert(`Terima kasih, kembaliannya ${bayar-totalbelanja}`)
+                        }
+                    } while (bayar < totalbelanja);
+                    var stokAnggur=stokAnggur-anggur
+                    var stokApel=stokApel-apel
+                    var stokJeruk=stokJeruk-jeruk
+                    do {
+                        var bye = prompt('Apakah Anda mau belanja lagi "Ya/Tidak"').toLocaleLowerCase()
+                        if (bye == 'tidak'){
+                            alert('Terima kasih! Silahkan datang kembali!')
+                        }
+                        else if (!(bye == 'ya' || bye == 'tidak')) {
+                            alert('Harap masukkan inputan yang benar')
+                        }    
+                    } while (!(bye == 'ya' || bye == 'tidak'));
+                }
+                else if (!(welcome == 'ya' || welcome == 'tidak')) {
+                    alert('Harap masukkan inputan yang benar')
+                }
+                else {
+                    alert('Baik, silahkan datang kembali')
+                }
+            } while (bye == 'ya'); 
+        } while (!(welcome == 'ya' || welcome == 'tidak'));
+    </script>
+</html>

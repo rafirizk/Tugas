@@ -1,0 +1,28 @@
+<html>
+    <script>
+        let kendaraan=prompt('Apa Jenis Kendaraan Anda / Mobil atau Motor?').toLowerCase();
+        let datang=prompt('Jam berapa Anda datang (0-11, 12=0)');
+        let datangampm=prompt('PM atau AM').toLowerCase();
+        let keluar=prompt('Jam berapa Anda keluar');
+        let keluarampm=prompt('PM atau AM').toLowerCase();
+        if(datangampm !== keluarampm){
+            const newLocal = lamaparkir = (+keluar +12 - +datang)//
+        }
+        else {
+            const newLocal = lamaparkir = (+keluar + +datang)
+        }
+
+        if (kendaraan == 'motor' && lamaparkir <= 2){
+            alert(`Anda parkir ${lamaparkir} jam, Anda harus membayar ${lamaparkir*3000}`)
+        }
+        else if (kendaraan == 'motor' && lamaparkir > 2){
+            alert(`Anda parkir ${lamaparkir} jam, Anda harus membayar ${lamaparkir*1000+4000}`)
+        }
+        else if (kendaraan == 'mobil' && lamaparkir <= 2){
+            alert(`Anda parkir ${lamaparkir} jam, Anda harus membayar ${lamaparkir*5000}`)
+        }
+        else if (kendaraan == 'mobil' && lamaparkir > 2){
+            alert(`Anda parkir ${lamaparkir} jam, Anda harus membayar ${lamaparkir*3000+4000}`)
+        }
+    </script>
+</html>

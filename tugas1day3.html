@@ -1,0 +1,50 @@
+<html>
+    <script>
+        let jeruk=prompt('Berapa Jeruk yang Anda beli?');
+        let stokJeruk= 5;
+        if (jeruk>stokJeruk){
+            alert('Stok Jeruk tidak mencukupi')
+        }
+        let apel=prompt('Berapa Apel yang Anda beli?');
+        let stokApel= 8;
+        if (apel>stokApel){
+            alert('Stok Apel tidak mencukupi')
+        }
+        let anggur=prompt('Berapa Anggur yang Anda beli?');
+        let stokAnggur= 4;
+        if (anggur>stokAnggur){
+            alert('Stok Anggur tidak mencukupi')
+        }
+        let hjeruk= 10000; hapel=15000; hanggur=20000
+        let totalharga = +(jeruk*hjeruk) + +(apel*hapel) + +(anggur*hanggur);
+        if (anggur>stokAnggur && jeruk>0 && apel>0){
+        	alert(`Jadi Anda belanja\n\nJeruk = ${jeruk}\nApel = ${apel}\nAnggur = ${stokAnggur}\n\nTotal = ${+(jeruk*hjeruk) + +(apel*hapel) + +(stokAnggur*hanggur)}`);
+            const newLocal = totalbelanja = +(jeruk*hjeruk) + +(apel*hapel) + +(stokAnggur*hanggur)
+        }
+        else if (anggur>0 && apel>0 && jeruk>stokJeruk){
+        	alert(`Jadi Anda belanja\n\nJeruk = ${stokJeruk}\nApel = ${apel}\nAnggur = ${anggur}\n\nTotal = ${+(jeruk*hjeruk) + +(stokApel*hapel) + +(anggur*hanggur)}`);
+            const newLocal = totalbelanja = +(jeruk*hjeruk) + +(stokApel*hapel) + +(anggur*hanggur)
+        }
+        else if (anggur>0 && jeruk>0 && apel>stokApel){
+        	alert(`Jadi Anda belanja\n\nJeruk = ${jeruk}\nApel = ${stokApel}\nAnggur = ${anggur}\n\nTotal = ${totalharga}`);
+            const newLocal = totalbelanja = totalharga
+        }
+        else if (anggur>0 && jeruk>0 && apel>0){
+        	alert(`Jadi Anda belanja\n\nJeruk = ${jeruk}\nApel = ${apel}\nAnggur = ${anggur}\n\nTotal = ${+(stokJeruk*hjeruk) + +(apel*hapel) + +(anggur*hanggur)}`);
+        	const newLocal = totalbelanja = +(stokJeruk*hjeruk) + +(apel*hapel) + +(anggur*hanggur)
+        }
+        else {
+            alert('Error')
+        }
+        let bayar=prompt('Masukkan Jumlah uang Anda')
+        if (bayar == totalbelanja){
+            alert('Terima kasih atas pembayarannya')
+        }
+        else if (bayar < totalbelanja ){
+            alert(`Pembayaran Anda kurang ${totalbelanja-bayar}`)
+        }
+        else {
+            alert(`Terima kasih, kembaliannya ${bayar-totalbelanja}`)
+        }
+    </script>
+</html>
