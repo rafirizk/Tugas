@@ -1,7 +1,7 @@
 <html>
     <script>
         do {
-            var welcome = prompt('Selamat datang apakah Anda mau berbelanja "Ya/Tidak"').toLowerCase()
+            var welcome = prompt('Selamat datang apa yang ini Anda lakukan?\n1.Belanja\n2.Tambah Buah\n3.Hapus Buah\n4.List Buah\5.Exit').toLowerCase()
             var stokJeruk = 15
             var stokApel = 10
             var stokAnggur = 7
@@ -76,6 +76,6 @@
                     alert('Baik, silahkan datang kembali')
                 }
             } while (bye == 'ya'); 
-        } while (!(welcome == 'ya' || welcome == 'tidak'));
+        } while (welcome >0 && welcome <6);
     </script>
 </html>
