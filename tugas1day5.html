@@ -2,19 +2,12 @@
     <script>
         do {
             var welcome = parseInt(prompt("Selamat datang apa yang ini Anda lakukan?\n1.Belanja\n2.Tambah Buah\n3.Hapus Buah\n4.List Buah\n5.Exit"));
-            // var stokJeruk = 15
-            // var stokApel = 10
-            // var stokAnggur = 7
             var cart = [];
             var fruit = ["Jeruk", "Apel", "Anggur"];
             var price = [10000, 15000, 20000];
             var stock = [5, 7, 8];
-
             do {
                 if (welcome == 1) {
-                    fruit = fruit.concat(plusfruit);
-                    price = price.concat(plusprice);
-                    stock = stock.concat(plusstock);
                     for (let i = 0; i < fruit.length; i++) {
                         do {
                             cart[i] = prompt(`Berapa ${fruit[i]} yang Anda beli?`);
@@ -27,31 +20,6 @@
                             }
                         } while (cart[i] > stock[i] || cart[i] <= 0 || !(cart[i] > 0));
                     }
-                    // do {
-                    //     cart[1] = prompt(`Berapa ${fruit[1]} yang Anda beli?`);
-                    //     if (cart[1] > stock[1]){
-                    //         alert(`Stok ${fruit[1]} hanya ada ${stock[1]}`)
-                    //     }
-                    //     else if (cart[1] == 0){
-                    //         alert(`Tidak boleh kosong`)
-                    //     }
-                    //     else if (!(cart[1] > 0)){
-                    //         alert(`Inputan salah`)
-                    //     }
-                    // } while (cart[1] > stock[1] || cart[1] <= 0 || !(cart[1]>0));
-                    // do {
-                    //     cart[2] = prompt(`Berapa ${fruit[2]} yang Anda beli?`);
-                    //     if (cart[2] > stock[2]){
-                    //         alert(`Stok ${fruit[2]} hanya ada ${stock[2]}`)
-                    //     }
-                    //     else if (cart[2] == 0){
-                    //         alert(`Tidak boleh kosong`)
-                    //     }
-                    //     else if (!(cart[2] > 0)){
-                    //         alert(`Inputan salah`)
-                    //     }
-                    // } while (cart[2] > stock[2] || cart[2] <= 0 || !(cart[2]>0));
-                    // let hjeruk= 10000; hapel=15000; hanggur=20000
                     var total = 0;
                     for (let i = 0; i < fruit.length; i++) {
                         total += cart[i] * price[i];
@@ -61,8 +29,6 @@
                         totalbuah += `${fruit[i]} @${cart[i]} = ${cart[i] * price[i]}\n`;
                     }
                     alert(`Jadi Anda belanja\n${totalbuah}Total Rp${total}`);
-                    // let totalbelanja = +(cart[0] * price[0]) + +(cart[1] * price[1]) + +(cart[2] * price[2])
-                    // alert(`Jadi Anda belanja\n\nJeruk = ${jeruk}\nApel = ${apel}\nAnggur = ${anggur}\n\nTotal = ${totalbelanja}`);
                     let bayar;
                     do {
                         bayar = prompt("Masukkan Jumlah uang Anda");
@@ -74,15 +40,6 @@
                             alert(`Terima kasih, kembaliannya ${bayar - total}`);
                         }
                     } while (bayar < total);
-
-                    // for (let i = 0; i < array.fruit; i++) {
-                    //     stock += [i];
-
-                    // }
-                    // var stock = []
-                    // var stokAnggur=stokAnggur-anggur
-                    // var stokApel=stokApel-apel
-                    // var stokJeruk=stokJeruk-jeruk
                     do {
                         var bye = prompt(`Apakah Anda mau belanja lagi\n1. Ya\n2. Kembali ke Menu Utama`);
                         if (bye == "tidak") {
@@ -94,20 +51,32 @@
                 } else if (!(welcome > 0) && welcome < 6) {
                     alert("Harap masukkan inputan yang benar");
                 } else if (welcome == 2) {
-                    do {
-                        var plusfruit = prompt(`Buah apa yang ingin anda tambahkan?`);
-                        var plusstock = prompt(`Berapa stok ${plusfruit}`);
-                        var plusprice = prompt(`Berapa harga ${plusfruit}`);
-                        var plusquestion = prompt(`Apakah Anda ingin menambah buah lagi\n1. Ya\n2. Tidak`);
-                    } while (plusquestion == 1);
+                    var plusfruit = prompt(`Buah apa yang ingin anda tambahkan?`);
+                    var plusstock = prompt(`Berapa stok ${plusfruit}`);
+                    var plusprice = prompt(`Berapa harga ${plusfruit}`);
+                    var yakin = prompt(`Apakah Anda yakin menambah buah ${plusfruit} seharga ${plusprice} dengan stok ${plusprice}\n1. Ya\n2. Tidak`)
+                    if (yakin == 1) {
+                        fruit.push(plusfruit);
+                        stock.push(plusstock);
+                        price.push(plusprice);
+                    } else {
+                        alert(`Penambahan dibatalkan`)
+                    }
                 } else if (welcome == 3) {
+                    var output = "";
+                    for (let i = 0; i < fruit.length; i++) {
+                        output += `${+i + 1}.${fruit[i]}\n`;
+                    }
                     do {
-                        var output = "";
-                        for (let i = 0; i < fruit.length; i++) {
-                            output += `${+i + 1}.${fruit[i]}\n`;
-                        }
-                        minfruit = prompt(`Buah apa yang ingin anda hapus\n${output}\n`);
-                    } while (!(minfruit > 0 || minfruit < fruit.length));
+                        editfruit = prompt(`Buah apa yang ingin anda hapus\n${output}\n`);
+                    } while (!(editfruit > 0 && editfruit < fruit.length));
+                    var editfruitname = prompt(`Ganti buah ${fruit[editfruit-1]} jadi?`)
+                    var editprice = prompt('Ganti harga')
+                    var editstock = prompt('Ganti Stock')
+                    fruit.splice(editfruit-1,1,editfruitname)
+                    stock.splice(editfruit-1,1,editstock)
+                    price.splice(editfruit-1,1,editprice)
+                    alert('berhasil mengedit')
                 } else if (welcome == 4) {
                     var output = "";
                     for (let i = 0; i < fruit.length; i++) {
@@ -118,6 +87,6 @@
                     alert("Baik, silahkan datang kembali");
                 }
             } while (bye == 1);
-        } while (!(welcome > 0) || welcome > 6 || welcome == 2 || welcome == 3 || welcome == 4 || plusquestion == 2 || bye == 2);
-    </script>
+        } while (!(welcome > 0) || welcome > 6 || welcome == 2 || welcome == 3 || welcome == 4 || bye == 2);
+        </script>
 </html>
