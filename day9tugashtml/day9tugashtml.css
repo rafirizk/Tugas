@@ -1,0 +1,34 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/* DIV */
+div.formWrapper {
+    margin: 13px;
+}
+
+/* Table */
+
+table,th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table{
+    margin: 0 auto;
+    text-align: center;   
+}
+
+table.one {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+table.inside {
+    margin: 20px;
+}
+
+thead th {
+    padding: 20px;
+}
