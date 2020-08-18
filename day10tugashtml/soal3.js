@@ -156,7 +156,7 @@ let saveEdit = (index)=>{
             <td>${val.name}</td>
             <td>${val.price}</td>
             <td id="stock${index}">${val.stock}</td>
-            <td><button id="addproduct${index} onclick="addProduct(${index})">add</button></td>
+            <td><button id="addproduct${index}" onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             `)
@@ -235,8 +235,8 @@ let yesDeleteCart = (index)=>{
             val.stock += arrCart[index].amount
             document.getElementById(`stock${i}`).innerHTML = val.stock
             val.amount = 0
+            document.getElementById(`addproduct${i}`).disabled = false
         }
-        document.getElementById(`addproduct${i}`).disabled = false
     })
     arrCart.splice(index, 1);
     addProduct1();
