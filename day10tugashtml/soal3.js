@@ -79,7 +79,7 @@ let deleteProduct = (index)=>{
             <td>${val.category}</td>
             <td>${val.name}</td>
             <td>${val.price}</td>
-            <td>${val.stock}</td>
+            <td id="stock${index}">${val.stock}</td>
             <td><button onclick="yesDelete(${index})">yes</button></td>
             <td><button onclick="cancelDelete(${index})">cancel</button></td>
             `)
@@ -99,7 +99,7 @@ let cancelDelete = (index)=>{
             <td>${val.category}</td>
             <td>${val.name}</td>
             <td>${val.price}</td>
-            <td>${val.stock}</td>
+            <td id="stock${index}">${val.stock}</td>
             <td><button onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
@@ -136,8 +136,8 @@ let cancelEdit = (index)=>{
             <td>${val.category}</td>
             <td>${val.name}</td>
             <td>${val.price}</td>
-            <td>${val.stock}</td>
-            <td><button onclick="addProduct(${index})">add</button></td>
+            <td id="stock${index}">${val.stock}</td>
+            <td><button id="addproduct${index}" onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             `)
@@ -148,15 +148,15 @@ let cancelEdit = (index)=>{
 let saveEdit = (index)=>{
     arrProduct[index].name = document.getElementById(`editname${index}`).value
     arrProduct[index].price = document.getElementById(`editprice${index}`).value
-    arrProduct[index].stock = document.getElementById(`editstock${index}`).value
+    arrProduct[index].stock = Number(document.getElementById(`editstock${index}`).value)
     var output = arrProduct.slice(index, index +1).map((val)=>{
         return (
             `<td>${val.id}</td>
             <td>${val.category}</td>
             <td>${val.name}</td>
             <td>${val.price}</td>
-            <td>${val.stock}</td>
-            <td><button onclick="addProduct(${index})">add</button></td>
+            <td id="stock${index}">${val.stock}</td>
+            <td><button id="addproduct${index} onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             `)
@@ -180,6 +180,7 @@ let addProduct1 = ()=>{
 }
 
 let addProduct = (index)=>{
+    event.preventDefault()
     arrProduct[index].amount = (typeof arrProduct[index].amount === 'undefined') ? 1 : arrProduct[index].amount + 1;
     arrCart.push(arrProduct[index])
     document.getElementById(`stock${index}`).innerHTML = arrProduct[index].stock -= 1
@@ -231,9 +232,11 @@ let yesDeleteCart = (index)=>{
     event.preventDefault()
     arrProduct.forEach ((val, i)=>{
         if (val.id == arrCart[index].id){
-            document.getElementById(`stock${i}`).innerHTML = val.stock += arrCart[index].amount
+            val.stock += arrCart[index].amount
+            document.getElementById(`stock${i}`).innerHTML = val.stock
             val.amount = 0
         }
+        document.getElementById(`addproduct${i}`).disabled = false
     })
     arrCart.splice(index, 1);
     addProduct1();
