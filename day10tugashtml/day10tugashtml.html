@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>VERSION V2.0</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script defer src="./3. Table-v2.0.js"></script>
     <link rel="stylesheet" type="text/css" href="day10tugashtml.css">
     <!-- <style>
         table,
@@ -64,16 +63,39 @@
                 <thead>
                     <th>Id</th>
                     <th>Category</th>
-                    <th>Nama</th>
+                    <th>Name</th>
                     <th>Price</th>
                     <th>Stock</th>
-                    <th>Action</th>
-                    <!--  <th colspan="2">Action</th> -->
+                    <th colspan="3">Action</th>
                 </thead>
                 <tbody id="render">
                     
                 </tbody>
             </table>
+        </fieldset>
+        <fieldset>
+            <legend>Cart</legend>
+            <table id="myTable">
+                <thead>
+                    <th>Id</th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </thead>
+                <tbody id="renderCart">
+                    
+                </tbody>
+            </table>
+            <br><br>
+            <button onclick="checkout(); return false;">Checkout</button>
+        </fieldset>
+        <fieldset>
+            <legend>Payment</legend>
+            <h1 id="transactionDetail"></h1>
+            <p id="details"></p>
+            <h4 id="total"></h4>
         </fieldset>
     </form>
     <script type="text/javascript" src="day10tugashtml.js"></script>

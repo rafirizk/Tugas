@@ -4,6 +4,7 @@ var arrProduct = [
     { id: 1579581081342,category: 'Cloth' , name: "Hoodie", price: 300000, stock :7 },
     { id: 1579581081577,category: 'Fruit' , name: "Apple", price: 10000, stock :8 }
 ];
+var arrCart = [];
 
 var arrCategory = ["All", "Fast Food", "Electronic", "Cloth", "Fruit"];
 
@@ -16,6 +17,7 @@ let inputProduct = (input)=>{
             <td id="name${index}">${val.name}</td>
             <td id="price${index}">${val.price}</td>
             <td id="stock${index}">${val.stock}</td>
+            <td><button id="addproduct${index}" onclick="addProduct(${index});return false;">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             </tr>`)
@@ -98,6 +100,7 @@ let cancelDelete = (index)=>{
             <td>${val.name}</td>
             <td>${val.price}</td>
             <td>${val.stock}</td>
+            <td><button onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             `)
@@ -134,6 +137,7 @@ let cancelEdit = (index)=>{
             <td>${val.name}</td>
             <td>${val.price}</td>
             <td>${val.stock}</td>
+            <td><button onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             `)
@@ -152,9 +156,117 @@ let saveEdit = (index)=>{
             <td>${val.name}</td>
             <td>${val.price}</td>
             <td>${val.stock}</td>
+            <td><button onclick="addProduct(${index})">add</button></td>
             <td><button onclick="deleteProduct(${index})">delete</button></td>
             <td><button onclick="editProduct(${index})">edit</button></td>
             `)
     })
     document.getElementById(`row${index}`).innerHTML = output.join('')
+}
+
+let addProduct1 = ()=>{
+    arrCart = [...new Set(arrCart)]
+    var output = arrCart.map((val, index)=>{
+        return (`<tr id="rowCart${index}">
+                <td>${val.id}</td>
+                <td>${val.category}</td>
+                <td id="name${index}">${val.name}</td>
+                <td id="price${index}">${val.price}</td>
+                <td id="amount${index}"><p><button onclick="mins(${index})">-</button> ${val.amount} <button onclick="plus(${index})">+</button></p></td>
+                <td><button onclick="deleteCartProduct(${index})">delete</button></td>
+                </tr>`)
+    })
+    document.getElementById('renderCart').innerHTML = output.join('')
+}
+
+let addProduct = (index)=>{
+    arrProduct[index].amount = (typeof arrProduct[index].amount === 'undefined') ? 1 : arrProduct[index].amount + 1;
+    arrCart.push(arrProduct[index])
+    document.getElementById(`stock${index}`).innerHTML = arrProduct[index].stock -= 1
+    if (arrProduct[index].stock === 0){
+        document.getElementById(`addproduct${index}`).disabled = true
+        alert(`Stok habis`)
+    }
+    addProduct1()
+}
+
+let mins = (index)=>{
+    document.getElementById(`amount${index}`).innerHTML = `<p><button onclick="mins(${index})">-</button> ${arrCart[index].amount -= 1} <button onclick="plus(${index})">+</button></p>`
+    arrProduct.forEach ((val, i)=>{
+        if (val.id == arrCart[index].id){
+            document.getElementById(`stock${i}`).innerHTML = val.stock += 1
+        }
+    })
+}
+
+let plus = (index)=>{
+    document.getElementById(`amount${index}`).innerHTML = `<p><button onclick="mins(${index})">-</button> ${arrCart[index].amount += 1} <button onclick="plus(${index})">+</button></p>`
+    arrProduct.forEach ((val, i)=>{
+        if (val.id == arrCart[index].id){
+            document.getElementById(`stock${i}`).innerHTML = val.stock -= 1
+            if (val.stock === 0){
+                document.getElementById(`addproduct${i}`).disabled = true
+                document.getElementById(`plus${index}`).disabled = true
+                alert(`Stok habis`)
+            }
+        }
+    })
+}
+
+let deleteCartProduct = (index)=>{
+    var output = arrCart.slice(index, index + 1).map((val)=>{
+        return (
+            `<td>${val.id}</td>
+            <td>${val.category}</td>
+            <td>${val.name}</td>
+            <td>${val.price}</td>
+            <td id="amount${index}"><p><button onclick="mins(${index})">-</button> ${val.amount} <button onclick="plus(${index})">+</button></p></td>            
+            <td><button onclick="yesDeleteCart(${index})">yes</button> <button onclick="cancelDeleteCart(${index})">cancel</button></td>
+            `)
+        })
+    document.getElementById(`rowCart${index}`).innerHTML = output.join('')
+}
+
+let yesDeleteCart = (index)=>{
+    event.preventDefault()
+    arrProduct.forEach ((val, i)=>{
+        if (val.id == arrCart[index].id){
+            document.getElementById(`stock${i}`).innerHTML = val.stock += arrCart[index].amount
+            val.amount = 0
+        }
+    })
+    arrCart.splice(index, 1);
+    addProduct1();
+}
+
+let cancelDeleteCart = (index)=>{
+    var output = arrCart.slice(index, index +1).map((val)=>{
+        return (
+            `<td>${val.id}</td>
+            <td>${val.category}</td>
+            <td>${val.name}</td>
+            <td>${val.price}</td>
+            <td id="amount${index}"><p><button onclick="mins(${index})">-</button> ${val.amount} <button onclick="plus(${index})">+</button></p></td>
+            <td><button onclick="deleteCartProduct(${index})">delete</button></td>
+            `)
+    })
+    document.getElementById(`rowCart${index}`).innerHTML = output.join('')
+}
+
+let checkout = ()=>{
+    document.getElementById("transactionDetail").innerHTML = 'Transaction Detail'
+    var output = arrCart.map((val)=>{
+        return `${val.id} | ${val.category} | ${val.name} | ${val.price} x ${val.amount}<br>`
+    }).join('')
+    document.getElementById("details").innerHTML = output
+    var total = 0
+    arrCart.forEach((val)=>{
+        total += val.price*val.amount;
+    })
+    var ppn = total*0.1
+    var subtotal = total + ppn
+    document.getElementById("total").innerHTML = `Subtotal ${total}<br>
+                                                    PPn ${ppn}<br>
+                                                    Total ${subtotal}`
+
 }
