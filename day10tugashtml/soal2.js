@@ -1,35 +1,28 @@
-totalangka = []
+a = []
 do{
     angka = prompt("Masukkan Angka")
     if (angka >= 0){
-        totalangka.push(parseInt(angka))
+        a.push(parseInt(angka))
     }
 } while (angka >= 0)
-console.log(totalangka)
+console.log(a)
 
-if (!totalangka[1]){
-    var a = totalangka.join('')
-}else if (totalangka[0] > totalangka[1]){
-    if (totalangka[0] > totalangka[2]){
-        var a = totalangka[0]
+for (let i=0; i<a.length-1;i++){
+    if (a[i] > a[i+1]){
+      b = a[i]
+      break
+    }else{
+      b = a[i + 1]
     }
-} else if (totalangka[1] > totalangka[2]) {
-    var a = totalangka[1]
-} else {
-    var a = totalangka[2]
-}
-console.log(`Nilai tertinggi : ${a}`)
-
-
-if (!totalangka[1]){
-    var b = totalangka.join('')
-}else if (totalangka[0] < totalangka[1]){
-    if (totalangka[0] < totalangka[2]){
-        var b = totalangka[0]
+  }
+  console.log(`Nilai terendah : ${b}`)
+  
+  for (let i=0; i<a.length-1;i++){
+    if (a[i] < a[i+1]){
+      c = a[i]
+      break
+    }else{
+      c = a[i + 1]
     }
-} else if (totalangka[1] < totalangka[2]) {
-    var b = totalangka[1]
-} else {
-    var b = totalangka[2]
-}
-console.log(`Nilai terendah : ${b}`)
+  }
+console.log(`Nilai terendah : ${c}`)
