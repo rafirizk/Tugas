@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal 2</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+        img {
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Madding</h1>
+        <br><br>
+        <p id="pUsername">Username: <input type="text" id="userName"></p>
+        <p id="pPassword">Password: <input type="password" id="passWord"></p>
+        <button id="login" onclick="logIn()">Login</button>
+        <table>
+            <thead>
+                <th>No</th>
+                <th>Kegiatan</th>
+                <th>Hari</th>
+                <th>Poster</th>
+                <th>Action</th>
+            </thead>
+            <tbody id="render">
+                
+            </tbody>
+            <h1 id="wrong"></h1>
+        </table>
+        <div id="logoutButton"></div>
+        <script type="text/javascript" src="soal2.js"></script>
+    </center>
+    
+</body>
+</html>
+

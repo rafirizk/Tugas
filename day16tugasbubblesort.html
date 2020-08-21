@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Day 16</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            width: 40%;
+        }
+        img {
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body onload="renderData()">
+    <center>
+        <table>
+            <tr>
+                <td>
+                    <h1 style="text-align: center;">Input</h1>
+                    <form action="#" onsubmit="inputData()">
+                        Nama: <input type="text" id="inputname"><br><br>
+                        Usia: <input type="number" id="inputage"><br><br>
+                        Gender: 
+                        <span>
+                            <input type="radio" value="Pria" name="inputgender">
+                            <label for="Pria">Pria</label>
+                        </span>
+                        <span>
+                            <input type="radio" value="Wanita" name="inputgender">
+                            <label for="Wanita">Wanita</label>
+                        </span><br><br>
+                        Pekerjaan: <input type="text" id="inputjob"><br><br>
+                        <input type="button" onclick="inputData()" value="Submit">
+                    </form>
+
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <span>
+            <button onclick="sort('nama')">Nama</button>    
+        </span>
+        <span>
+            <button onclick="sort('usia')">Usia</button>
+        </span>
+        <span>
+            <button onclick="sort('kelamin')">Gender</button>
+        </span>
+        <span>
+            <button onclick="sort('pekerjaan')">Pekerjaan</button>
+        </span>
+        <br>
+        <br>
+        <table>
+            <thead>
+                <td>No</td>
+                <td>Nama</td>
+                <td>Usia</td>
+                <td>Gender</td>
+                <td>Pekerjaan</td>
+            </thead>
+            <tbody id="render">
+
+            </tbody>
+        </table>
+    </center>
+    <script type="text/javascript" src="day16tugasbubblesort.js"></script>
+</body>
+</html>

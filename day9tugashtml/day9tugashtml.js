@@ -10,18 +10,23 @@ var function1 = ()=>{
             condition1 = condition[i].value
         }
     }
+    
+    let kondisi = [name1.value, price1.value, condition1, category1.value]
     var table = document.getElementById("product");
     var row = table.insertRow(-1);
-    row.insertCell(0).innerHTML = name1.value
-    row.insertCell(1).innerHTML = price1.value
-    row.insertCell(2).innerHTML = condition1
-    row.insertCell(3).innerHTML = category1.value
+    for (let i = 0; i <kondisi.length; i++){
+        row.insertCell([i]) = kondisi[i]
+    } 
+    // row.insertCell(0).innerHTML = name1.value
+    // row.insertCell(1).innerHTML = price1.value
+    // row.insertCell(2).innerHTML = condition1
+    // row.insertCell(3).innerHTML = category1.value
 
     console.log(name1.value, price1.value, condition1, category1.value)
 }
 
 var name2 = document.querySelector("#nameH");
-var price2 = document.querySelector("#priceH")
+var price2 = document.querySelector("#priceH");
 
 var function2 = ()=>{
     var sex = document.getElementsByName("sex");
@@ -38,13 +43,12 @@ var function2 = ()=>{
             stat1 = stat[i].value
         }
     }
-
+    let kondisi = [name2.value, price2.value, sex1, stat1]
     var table = document.getElementById("animal");
     var row = table.insertRow(-1);
-    row.insertCell(0).innerHTML = name2.value
-    row.insertCell(1).innerHTML = price2.value
-    row.insertCell(2).innerHTML = sex1
-    row.insertCell(3).innerHTML = stat1
+    for (let i = 0; i < kondisi.length; i++){
+        row.insertCell([i]).innerHTML = kondisi[i]
+    }
 
     console.log(name2.value, price2.value, sex1, stat1)
 }

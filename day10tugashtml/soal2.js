@@ -9,20 +9,20 @@ console.log(a)
 
 for (let i=0; i<a.length-1;i++){
     if (a[i] > a[i+1]){
-      b = a[i]
-      break
+        b = a[i]
+        break
     }else{
-      b = a[i + 1]
+        b = a[i + 1]
     }
-  }
-  console.log(`Nilai terendah : ${b}`)
+}
+console.log(`Nilai tertinggi : ${b}`)
   
-  for (let i=0; i<a.length-1;i++){
+for (let i=0; i<a.length-1;i++){
     if (a[i] < a[i+1]){
-      c = a[i]
-      break
+        c = a[i]
+        break
     }else{
-      c = a[i + 1]
+        c = a[i + 1]
     }
-  }
+}
 console.log(`Nilai terendah : ${c}`)

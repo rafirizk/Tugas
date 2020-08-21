@@ -1,11 +1,11 @@
 <html>
     <script>
+        var cart = [];
+        var fruit = ["Jeruk", "Apel", "Anggur"];
+        var price = [10000, 15000, 20000];
+        var stock = [5, 7, 8];
         do {
             var welcome = parseInt(prompt("Selamat datang apa yang ini Anda lakukan?\n1.Belanja\n2.Tambah Buah\n3.Hapus Buah\n4.List Buah\n5.Exit"));
-            var cart = [];
-            var fruit = ["Jeruk", "Apel", "Anggur"];
-            var price = [10000, 15000, 20000];
-            var stock = [5, 7, 8];
             do {
                 if (welcome == 1) {
                     for (let i = 0; i < fruit.length; i++) {
@@ -59,6 +59,7 @@
                         fruit.push(plusfruit);
                         stock.push(plusstock);
                         price.push(plusprice);
+                        console.log(fruit)
                     } else {
                         alert(`Penambahan dibatalkan`)
                     }
